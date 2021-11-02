@@ -5,6 +5,6 @@
 #ifndef FENORAMA_FENORAMA_H
 #define FENORAMA_FENORAMA_H
 
-#include "fnGuiMain.h"
+#include "gui/fnGuiMain.h"
 
 #endif //FENORAMA_FENORAMA_H
