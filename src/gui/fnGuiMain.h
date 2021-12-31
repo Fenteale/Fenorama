@@ -6,10 +6,18 @@
 #define FENORAMA_FNGUIMAIN_H
 
 #include <iostream>
+#include <stdexcept>
+#include "SDL2/SDL.h"
+#include "fnFilesystem.h"
+#include "fnDefs.h"
 
 class FNGui {
 public:
-    FNGui();
+    FNGui(); // blank construction WIP
+    FNGui(SDL_Window *window, SDL_Renderer* renderer);
+
+    void loadLayout(fs::path layoutPath, fnCi x, fnCi y, fnCi width, fnCi height);
+    void process();
 };
 
 #endif //FENORAMA_FNGUIMAIN_H
