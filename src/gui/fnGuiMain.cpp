@@ -19,8 +19,10 @@ FNGui::FNGui(SDL_Window *window, SDL_Renderer *renderer) {
 void FNGui::loadLayout(fs::path layoutPath, fnCi x, fnCi y, fnCi width, fnCi height) {
     if(!fs::is_regular_file(layoutPath))
         throw std::runtime_error("Given path is not a file.");
+    else
+        std::cout << "Loading layout file: " << layoutPath.string() << std::endl;
 
-    
+    FNParse fileParse(layoutPath);
 }
 
 void FNGui::process() {

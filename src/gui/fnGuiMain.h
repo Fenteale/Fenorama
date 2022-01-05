@@ -9,6 +9,7 @@
 #include <stdexcept>
 #include "SDL2/SDL.h"
 #include "fnFilesystem.h"
+#include "fnParseMain.h"
 #include "fnDefs.h"
 
 class FNGui {

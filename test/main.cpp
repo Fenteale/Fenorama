@@ -6,12 +6,13 @@
 
 int main() {
     SDL_Init(SDL_INIT_VIDEO | SDL_INIT_EVENTS);
-    SDL_Window* window = SDL_CreateWindow("Fenorama Test", SDL_WINDOWPOS_UNDEFINED,
-                                          SDL_WINDOWPOS_UNDEFINED, WINDOW_WIDTH, WINDOW_HEIGHT,
-                                          SDL_WINDOW_SHOWN | SDL_WINDOW_UTILITY);
-
-    FNGui test(window, nullptr);
-    std::cout << "Hello, World!" << std::endl;
+    SDL_Window* window = nullptr;
+    SDL_Renderer* renderer = nullptr;
+    SDL_CreateWindowAndRenderer(WINDOW_WIDTH, WINDOW_HEIGHT,
+                                SDL_WINDOW_SHOWN | SDL_WINDOW_UTILITY, &window, &renderer);
+    FNGui test(window, renderer);
+    std::cout << "Current path: " << fs::current_path().string() << std::endl;
+    test.loadLayout("test.html", 0, 0, 0, 0);
 
     SDL_Event e;
     bool quit = false;
