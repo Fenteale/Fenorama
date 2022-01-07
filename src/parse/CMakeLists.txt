@@ -2,7 +2,9 @@ set(SOURCES
         fnParseMain.cpp
         fnParseMain.h
         fnPLayout.cpp
-        fnParseMain.h)
+        fnPLayout.h
+        fnParseTag.cpp
+        fnParseTag.h)
 
 
 add_library(fnParse ${SOURCES})

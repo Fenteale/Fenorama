@@ -19,7 +19,7 @@ private:
     bool _inSmallDiv;
     int _level;
 
-    bool _recognizedTag(const char &c) const;
+    bool _ignoredTag(const std::string &ttc) const;
     //tagdetected
 };
 
