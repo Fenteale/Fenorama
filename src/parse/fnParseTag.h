@@ -6,15 +6,28 @@
 #define FENORAMA_FNPARSETAG_H
 
 #include <string>
+#include <memory>
+#include <vector>
 #include <iostream>
+
+enum tagHandleType {
+    NULL_TAG,
+    GOOD_TAG,
+    IGNORE_TAG,
+    IGNORE_ONCE_TAG
+};
 
 class fnParseTag {
 protected:
-    std::string tagType;
-    std::string data;
+    std::string _tagType;
+    std::string _data;
+    std::vector<std::shared_ptr<fnParseTag>> _subTags;
+
+    tagHandleType _getTagType(const std::string &ttc) const;
 public:
-    fnParseTag(std::string tagType, std::string data);
+    fnParseTag(const std::string &data);
     void parseInside();
+    void runAllSubTags();
 };
 
 

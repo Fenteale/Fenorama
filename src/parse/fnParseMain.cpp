@@ -11,37 +11,8 @@ FNParse::FNParse(fs::path layoutToLoad) : _lc(), _inSmallDiv(false), _level(0) {
     std::string fdata(size, '\0');
     f.read(fdata.data(), size);
 
-    bool inTag = false;
-    int tagStart = 0;
-    std::string currentTag = "";
-    std::string toIgnoreTo = "";
-    bool ignoreTag = true;
-
-    std::cout << "Outputting raw file input." << std::endl;
-    std::cout << fdata << std::endl;
-
-    for (int i=0; i < fdata.length(); i++) {
-        if(!inTag) {
-            if(fdata[i] == '<') {
-                std::cout << "TAG DETECTED: ";
-                inTag = true;
-                tagStart = i;
-            }
-        } else {
-            if(fdata[i] == '>') {
-                inTag = false;
-                currentTag = fdata.substr(tagStart, i-tagStart);
-                std::cout << currentTag << std::endl;
-            }
-        }
-        if (_ignoredTag(currentTag)) {
-            toIgnoreTo = "</" + currentTag.substr(1, currentTag.length()-1);
-            std::cout << "SHOULD BE IGNORING TO " << toIgnoreTo << std::endl;
-            ignoreTag=true;
-        } else {
-            ignoreTag = false;
-        }
-    }
+    fnParseTag rootTag(fdata);
+    rootTag.parseInside();
     /*
     while( getline(f, line) ) {
         std::string important;
@@ -76,29 +47,3 @@ FNParse::FNParse(fs::path layoutToLoad) : _lc(), _inSmallDiv(false), _level(0) {
     */
 }
 
-bool FNParse::_ignoredTag(const std::string &ttc) const {
-    std::string ignoredTags[] = {
-            "<head",
-            //"<html",
-            "<!DOCTYPE"
-    };
-    std::string ignoredTagsOnce[] = {
-            "<!DOCTYPE"
-    };
-    std::string goodTags[] = {
-            "<body"
-    };
-    std::string nullTags[] = {
-            "<html"
-    };
-    bool toIgnore = false;
-    for (auto t : ignoredTags) {
-        if (ttc.length() >= t.length()) {
-            if (ttc.substr(0, t.length()) == t) {
-                toIgnore = true;
-                break;
-            }
-        }
-    }
-    return toIgnore;
-}

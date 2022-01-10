@@ -10,6 +10,7 @@
 #include <fstream>
 #include "fnFilesystem.h"
 #include "fnPLayout.h"
+#include "fnParseTag.h"
 
 class FNParse {
 public:
@@ -19,7 +20,7 @@ private:
     bool _inSmallDiv;
     int _level;
 
-    bool _ignoredTag(const std::string &ttc) const;
+
     //tagdetected
 };
 
